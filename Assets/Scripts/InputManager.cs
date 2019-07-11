@@ -182,7 +182,7 @@ public class InputManager : MonoBehaviour
         for (int i = 0; i < s.totalSlide; i++)
         {
             cheerLeader.GetComponent<Meeple>().positions.Add(cheerLeader.transform.position);
-            Debug.Log("Filling positions " + i);
+            //Debug.Log("Filling positions " + i);
         }
     }
 }
