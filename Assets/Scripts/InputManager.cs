@@ -133,7 +133,7 @@ public class InputManager : MonoBehaviour
         {
             foreach (GameObject p in group)
             {
-                p.GetComponent<Meeple>().Insert(s.currentSlide);
+                p.GetComponent<Meeple>().Insert(s.currentSlide-1);
             }
         } else
         {

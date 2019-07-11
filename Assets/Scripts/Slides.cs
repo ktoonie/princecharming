@@ -24,11 +24,11 @@ public class Slides : MonoBehaviour
         if (currentSlide < totalSlide)
         {
             currentSlide++;
-            //Debug.Log(currentSlide + "/" + totalSlide);
+            Debug.Log(currentSlide + "/" + totalSlide);
             return true;
         } else
         {
-            //Debug.Log(currentSlide + "/" + totalSlide);
+            Debug.Log(currentSlide + "/" + totalSlide);
             return false;
         }
     }
@@ -37,12 +37,12 @@ public class Slides : MonoBehaviour
         if (currentSlide > 1)
         {
             currentSlide--;
-            //Debug.Log(currentSlide + "/" + totalSlide);
+            Debug.Log(currentSlide + "/" + totalSlide);
             return true;
         }
         else
         {
-            //Debug.Log(currentSlide + "/" + totalSlide);
+            Debug.Log(currentSlide + "/" + totalSlide);
             return false;
         }
     }
@@ -52,13 +52,13 @@ public class Slides : MonoBehaviour
         {
             currentSlide++;
             totalSlide++;
-            //Debug.Log("Inserting " + currentSlide + "/" + totalSlide);
+            Debug.Log("Inserting " + currentSlide + "/" + totalSlide);
             return true;
         } else
         {
             currentSlide++;
             totalSlide++;
-            //Debug.Log("Adding " + currentSlide + "/" + totalSlide);
+            Debug.Log("Adding " + currentSlide + "/" + totalSlide);
             return false;
         }
     }
