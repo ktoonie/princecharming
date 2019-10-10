@@ -15,6 +15,7 @@ public class InputManager : MonoBehaviour
     public List<GameObject> group = new List<GameObject>();
     private Clock c;
     private Slides s;
+    private float meepleSize = 15f;
 
     private void Start()
     {
@@ -23,6 +24,13 @@ public class InputManager : MonoBehaviour
     }
     void Update()
     {
+        if(Input.GetMouseButtonDown(2))
+        {
+            Vector2 mousePos = Input.mousePosition;
+            Debug.Log("("+ mousePos.x + ", " + mousePos.y + ")");
+            Debug.Log("Middle Mouse Button Pressed");
+        }
+
         if (onLeftClick)
         {
             DragOrPickUp();
@@ -86,7 +94,7 @@ public class InputManager : MonoBehaviour
                     draggingItem = true;
                     draggedObject = hit.transform.gameObject;
                     touchOffset = (Vector2)hit.transform.position - inputPosition;
-                    draggedObject.transform.localScale = new Vector2(1, 1);
+                    draggedObject.transform.localScale = new Vector2(meepleSize, meepleSize);
                 }
             }
         }
@@ -123,7 +131,7 @@ public class InputManager : MonoBehaviour
     void DropItem()
     {
         draggingItem = false;
-        draggedObject.transform.localScale = new Vector2(.75f, .75f);
+        draggedObject.transform.localScale = new Vector2(meepleSize, meepleSize);
         //savePositions();
         draggedObject.GetComponent<Meeple>().Save(s.currentSlide);
     }
@@ -177,7 +185,7 @@ public class InputManager : MonoBehaviour
         randY = Random.Range(-4.0f, 4.0f);
         GameObject cheerLeader = Instantiate(pawn);
         group.Add(cheerLeader);
-        cheerLeader.transform.position = new Vector2(randX, randY);
+        cheerLeader.transform.localScale = new Vector2(meepleSize, meepleSize);
         cheerLeader.GetComponent<Renderer>().material.color = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
         for (int i = 0; i < s.totalSlide; i++)
         {
