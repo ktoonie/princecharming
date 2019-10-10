@@ -31,12 +31,12 @@ public class Clock : MonoBehaviour
         {
             //s.currentSlide = (int)elapsedTime;
             float RoundedTime = Mathf.Round(elapsedTime * 100f) / 100f;
-            if (elapsedTime > 1)
+            if (stopWatch.ElapsedMilliseconds > 1000)
             {
-                UnityEngine.Debug.Log("BOOP "+RoundedTime);
-                stopWatch.Reset();
+                //UnityEngine.Debug.Log("BOOP "+ stopWatch.ElapsedMilliseconds);
+                stopWatch.Restart();
             }
-            UnityEngine.Debug.Log(percentTime + " / " + Mathf.Round(elapsedTime * 100f) / 100f + " / " + s.currentSlide);
+            //UnityEngine.Debug.Log(stopWatch.ElapsedMilliseconds);//percentTime + " / " + Mathf.Round(elapsedTime * 100f) / 100f + " / " + s.currentSlide);
         }
     }
     public void toggleWatch()
