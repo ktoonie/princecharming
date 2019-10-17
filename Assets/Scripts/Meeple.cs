@@ -6,6 +6,7 @@ public class Meeple : MonoBehaviour
 {
     private SpriteRenderer rend;
     public List<Vector2> positions = new List<Vector2>();
+    public Vector3 size;
     private GameObject Slide;
     private Slides s;
 
@@ -22,6 +23,7 @@ public class Meeple : MonoBehaviour
     void Start()
     {
         rend = GetComponent<SpriteRenderer>();
+        size = GetComponent<Renderer>().bounds.extents;
     }
     
     void Update()
@@ -42,12 +44,17 @@ public class Meeple : MonoBehaviour
     public void Save(int slide)
     {
         positions[slide-1] = transform.position;
-        Debug.Log("Saving position: " + positions[slide - 1] + " in slide " + slide);
+        //Debug.Log("Saving position: " + positions[slide - 1] + " in slide " + slide);
     }
 
     public void Recall(int slide)
     {
         transform.position = positions[slide-1];
-        Debug.Log("Recalling position: " + positions[slide-1] + " in slide " + slide);
+        //Debug.Log("Recalling position: " + positions[slide-1] + " in slide " + slide);
+    }
+
+    public void Remove(int slide)
+    {
+        positions.RemoveAt(slide-1);
     }
 }

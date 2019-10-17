@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Diagnostics;
 
 public class InputManager : MonoBehaviour
 {
@@ -15,12 +16,25 @@ public class InputManager : MonoBehaviour
     public List<GameObject> group = new List<GameObject>();
     private Clock c;
     private Slides s;
+<<<<<<< HEAD
     private float meepleSize = 15f;
+=======
+    private Mat m;
+
+    private Stopwatch stopWatch;
+    private static float elapsedTime;
+    private static float percentTime;
+    private static bool paused;
+>>>>>>> Tony
 
     private void Start()
     {
         c = FindObjectOfType<Clock>();
         s = FindObjectOfType<Slides>();
+        m = FindObjectOfType<Mat>();
+
+        stopWatch = new Stopwatch();
+        paused = true;
     }
     void Update()
     {
@@ -62,11 +76,47 @@ public class InputManager : MonoBehaviour
         }
         if (Input.GetKeyDown("space"))
         {
-            c.toggleWatch();
+            toggleWatch();
         }
         if (Input.GetKeyDown("c"))
         {
             createSlide();
+        }
+
+        if (!paused)
+        {
+            elapsedTime = (float)stopWatch.Elapsed.TotalSeconds;
+            percentTime = elapsedTime % 1;
+            if (stopWatch.ElapsedMilliseconds > 1000)
+            {
+                //UnityEngine.Debug.Log("BOOP " + stopWatch.ElapsedMilliseconds);
+                if(s.currentSlide < s.totalSlide)
+                {
+                    s.NextSlide();
+                }
+                else
+                {
+                    //UnityEngine.Debug.Log("Back to Slide 1");
+                    s.GetSlide(1);
+                }
+                stopWatch.Restart();
+            } else
+            {
+                foreach (GameObject p in group)
+                {
+                    int current = s.currentSlide;
+                    int next = s.currentSlide + 1;
+                    int previous = s.currentSlide - 1;
+                    if (current < s.totalSlide)
+                    {
+                        p.GetComponent<Meeple>().transform.position = Vector2.Lerp(p.GetComponent<Meeple>().positions[previous], p.GetComponent<Meeple>().positions[current], elapsedTime);
+                        //UnityEngine.Debug.Log(p.GetComponent<Meeple>().transform.position + " // " + p.GetComponent<Meeple>().positions[previous] + " // " + p.GetComponent<Meeple>().positions[current] + " // " + percentTime);
+                    }
+                    //p.GetComponent<Meeple>().transform.position = p.GetComponent<Meeple>().positions[current];
+                    //UnityEngine.Debug.Log("Prev: " + previous + ", Next " + current);
+                    //p.GetComponent<Meeple>().transform.position = Vector2.Lerp(p.GetComponent<Meeple>().positions[s.currentSlide - 2], p.GetComponent<Meeple>().positions[s.currentSlide - 1], percentTime);
+                }
+            }
         }
     }
     Vector2 CurrentTouchPosition
@@ -76,12 +126,31 @@ public class InputManager : MonoBehaviour
             return Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
     }
+    private void toggleWatch()
+    {
+        if (paused)
+        {
+            stopWatch.Start();
+            //getSlide(1);
+        }
+        else
+        {
+            stopWatch.Stop();
+            stopWatch.Reset();
+            getSlide(s.currentSlide);
+        }
+        paused = !paused;
+    }
     private void DragOrPickUp()
     {
         var inputPosition = CurrentTouchPosition;
         if (draggingItem)
         {
-            draggedObject.transform.position = inputPosition + touchOffset;
+            Vector3 bound = inputPosition + touchOffset;
+            bound.x = Mathf.Clamp(bound.x, m.left, m.right);
+            bound.y = Mathf.Clamp(bound.y, m.bottom, m.top);
+
+            draggedObject.transform.position = bound;
         }
         else
         {
@@ -151,18 +220,51 @@ public class InputManager : MonoBehaviour
             }
         }
     }
+    public void removeSlide()
+    {
+        if (s.totalSlide > 1)
+        {
+            foreach (GameObject p in group)
+            {
+                p.GetComponent<Meeple>().Remove(s.currentSlide);
+            }
+            if (s.currentSlide < s.totalSlide)
+            {
+                if (s.currentSlide > 1)
+                {
+                    s.currentSlide--;
+                }
+                s.totalSlide--;
+                //UnityEngine.Debug.Log("Removing slide " + s.currentSlide);
+            }
+            else
+            {
+                s.currentSlide--;
+                s.totalSlide--;
+                //UnityEngine.Debug.Log("Removing slide " + s.currentSlide);
+            }
+            recallPositions(s.currentSlide);
+        }
+    }
+    public void getSlide(int slide)
+    {
+        if (s.GetSlide(slide))
+        {
+            recallPositions(slide);
+        }
+    }
     public void nextSlide()
     {
         if (s.NextSlide())
         {
-            recallPositions();
+            recallPositions(s.currentSlide);
         }
     }
     public void prevSlide()
     {
         if (s.PrevSlide())
         {
-            recallPositions();
+            recallPositions(s.currentSlide);
         }
     }
     private void savePositions()
@@ -172,17 +274,17 @@ public class InputManager : MonoBehaviour
             p.GetComponent<Meeple>().Save(s.currentSlide);
         }
     }
-    private void recallPositions()
+    private void recallPositions(int pos)
     {
         foreach (GameObject p in group)
         {
-            p.GetComponent<Meeple>().Recall(s.currentSlide);
+            p.GetComponent<Meeple>().Recall(pos);
         }
     }
     public void addPawn()
     {
-        randX = Random.Range(-8.0f, 8.0f);
-        randY = Random.Range(-4.0f, 4.0f);
+        randX = Random.Range(m.left, m.right);
+        randY = Random.Range(m.bottom, m.top);
         GameObject cheerLeader = Instantiate(pawn);
         group.Add(cheerLeader);
         cheerLeader.transform.localScale = new Vector2(meepleSize, meepleSize);
