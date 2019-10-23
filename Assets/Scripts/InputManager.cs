@@ -16,16 +16,12 @@ public class InputManager : MonoBehaviour
     public List<GameObject> group = new List<GameObject>();
     private Clock c;
     private Slides s;
-<<<<<<< HEAD
-    private float meepleSize = 15f;
-=======
     private Mat m;
 
     private Stopwatch stopWatch;
     private static float elapsedTime;
     private static float percentTime;
     private static bool paused;
->>>>>>> Tony
 
     private void Start()
     {
@@ -38,13 +34,6 @@ public class InputManager : MonoBehaviour
     }
     void Update()
     {
-        if(Input.GetMouseButtonDown(2))
-        {
-            Vector2 mousePos = Input.mousePosition;
-            Debug.Log("("+ mousePos.x + ", " + mousePos.y + ")");
-            Debug.Log("Middle Mouse Button Pressed");
-        }
-
         if (onLeftClick)
         {
             DragOrPickUp();
@@ -163,7 +152,7 @@ public class InputManager : MonoBehaviour
                     draggingItem = true;
                     draggedObject = hit.transform.gameObject;
                     touchOffset = (Vector2)hit.transform.position - inputPosition;
-                    draggedObject.transform.localScale = new Vector2(meepleSize, meepleSize);
+                    draggedObject.transform.localScale = new Vector2(1, 1);
                 }
             }
         }
@@ -200,7 +189,7 @@ public class InputManager : MonoBehaviour
     void DropItem()
     {
         draggingItem = false;
-        draggedObject.transform.localScale = new Vector2(meepleSize, meepleSize);
+        draggedObject.transform.localScale = new Vector2(.75f, .75f);
         //savePositions();
         draggedObject.GetComponent<Meeple>().Save(s.currentSlide);
     }
@@ -287,7 +276,7 @@ public class InputManager : MonoBehaviour
         randY = Random.Range(m.bottom, m.top);
         GameObject cheerLeader = Instantiate(pawn);
         group.Add(cheerLeader);
-        cheerLeader.transform.localScale = new Vector2(meepleSize, meepleSize);
+        cheerLeader.transform.position = new Vector2(randX, randY);
         cheerLeader.GetComponent<Renderer>().material.color = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
         for (int i = 0; i < s.totalSlide; i++)
         {

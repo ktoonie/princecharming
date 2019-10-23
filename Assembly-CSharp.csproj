@@ -64,7 +64,6 @@
     <Compile Include="Assets\Scripts\InputManager.cs" />
     <Compile Include="Assets\Scripts\Mat.cs" />
     <Compile Include="Assets\Scripts\Meeple.cs" />
-    <Compile Include="Assets\Scripts\ScreenCapture.cs" />
     <Compile Include="Assets\Scripts\Slides.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/Tony/Documents/GitHub/princecharming/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>

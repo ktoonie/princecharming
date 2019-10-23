@@ -16,6 +16,7 @@ public class Slides : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
     }
 
     public bool GetSlide(int slide)
@@ -60,9 +61,6 @@ public class Slides : MonoBehaviour
     }
     public bool AddSlide()
     {
-       //take a screenshot when we add a slide
-       ScreenCapture.TakeScreenShot_Static(500, 500);
-
         if (currentSlide < totalSlide)
         {
             currentSlide++;
