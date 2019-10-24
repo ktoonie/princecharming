@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1
+MonoBehaviour:
+  m_ObjectHideFlags: 61
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1666186674, guid: 68c7e4565cde54155bb78d8e935f1ddb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cacheType: 2
+  lastUpdatedAtString: 2019-10-23T19:19:10.679-07:00
+  initializedAtString: 2019-10-23T19:15:30.331-07:00
+  localBranches:
+  - name: Master
+    tracking: origin/Master
+  - name: Tony
+    tracking: origin/Tony
+  remoteBranches:
+  - name: origin/Angelus
+    tracking: '[None]'
+  - name: origin/HEAD
+    tracking: '[None]'
+  - name: origin/Master
+    tracking: '[None]'
+  - name: origin/Tony
+    tracking: '[None]'
+  remotes:
+  - name: origin
+    url: https://github.com/ktoonie/princecharming.git
+    login: 
+    user: 
+    host: 
+    function: 0
+    token: 
+  localConfigBranches:
+    keys:
+    - Master
+    - Tony
+    values:
+    - name: Master
+      remote:
+        name: origin
+        url: https://github.com/ktoonie/princecharming.git
+      trackingBranch: Master
+    - name: Tony
+      remote:
+        name: origin
+        url: https://github.com/ktoonie/princecharming.git
+      trackingBranch: Tony
+  remoteConfigBranches:
+    keys:
+    - origin
+    subKeys:
+    - Values:
+      - Angelus
+      - HEAD
+      - Master
+      - Tony
+    subKeyValues:
+    - Values:
+      - name: Angelus
+        remote:
+          name: origin
+          url: https://github.com/ktoonie/princecharming.git
+        trackingBranch: 
+      - name: HEAD
+        remote:
+          name: origin
+          url: https://github.com/ktoonie/princecharming.git
+        trackingBranch: 
+      - name: Master
+        remote:
+          name: origin
+          url: https://github.com/ktoonie/princecharming.git
+        trackingBranch: 
+      - name: Tony
+        remote:
+          name: origin
+          url: https://github.com/ktoonie/princecharming.git
+        trackingBranch: 
+  configRemotes:
+    keys:
+    - origin
+    values:
+    - name: origin
+      url: https://github.com/ktoonie/princecharming.git
