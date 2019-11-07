@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cacheType: 6
-  lastUpdatedAtString: 2019-11-06T18:23:31.575-08:00
+  lastUpdatedAtString: 2019-11-06T18:25:06.916-08:00
   initializedAtString: 2019-11-06T18:21:09.060-08:00
   entries:
   - path: Assembly-CSharp-Editor-firstpass.csproj
@@ -25,6 +25,18 @@ MonoBehaviour:
   - path: Library\gfu\cache\branches.yaml
     fullPath: C:\Users\Tony\Documents\GitHub\princecharming\Library\gfu\cache\branches.yaml
     projectPath: Library\gfu\cache\branches.yaml
+    originalPath: 
+    indexStatus: 0
+    workTreeStatus: 3
+  - path: Library\gfu\cache\gitlocks.yaml
+    fullPath: C:\Users\Tony\Documents\GitHub\princecharming\Library\gfu\cache\gitlocks.yaml
+    projectPath: Library\gfu\cache\gitlocks.yaml
+    originalPath: 
+    indexStatus: 0
+    workTreeStatus: 3
+  - path: Library\gfu\cache\gitlog.yaml
+    fullPath: C:\Users\Tony\Documents\GitHub\princecharming\Library\gfu\cache\gitlog.yaml
+    projectPath: Library\gfu\cache\gitlog.yaml
     originalPath: 
     indexStatus: 0
     workTreeStatus: 3
@@ -40,9 +52,9 @@ MonoBehaviour:
     originalPath: 
     indexStatus: 0
     workTreeStatus: 3
-  - path: princecharming.sln
-    fullPath: C:\Users\Tony\Documents\GitHub\princecharming\princecharming.sln
-    projectPath: princecharming.sln
+  - path: Library\gfu\cache\repoinfo.yaml
+    fullPath: C:\Users\Tony\Documents\GitHub\princecharming\Library\gfu\cache\repoinfo.yaml
+    projectPath: Library\gfu\cache\repoinfo.yaml
     originalPath: 
     indexStatus: 0
     workTreeStatus: 3
